@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="main-container">
+    <div>
+      <a href="/" class="button is-text">&lt; return to main menu</a>
+    </div>
+    <h1 class="title">practice</h1>
+    <div>
+      <canvas id="canvas" width="200" height="200"></canvas>
+    </div>
+    <div style="padding: 1rem;">
+      {% if correct %}
+        {% if correct == 'yes' %}
+          <p style="font-size: 0.75rem;">correct! next question:</p>
+        {% else %}
+          <p style="font-size: 0.75rem;">incorrect! next question:</p>
+        {% endif %}
+      {% endif %}
+      <p style="margin-top: 0.5rem;">Write an uppercase "{{letter.lower()}}"</p>
+    </div>
+    <div>
+      <form id="practice-form" action="practice" method="POST">
+        <input id="pixels" name="pixels" type="hidden" />
+        <input id="letter" name="letter" type="hidden" value="{{letter}}" />
+        <button type="button" class="button is-success" onclick="practiceAction()">check my answer</button>
+        <button type="button" class="button is-info" onclick="resetCanvas()">clear</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      startCanvas()
+    })
+  </script>
+
+{% endblock %}
